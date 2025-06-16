@@ -24,7 +24,6 @@ vim.opt.pumwidth = 80
 
 vim.o.updatetime = 100
 
--- vim.opt.relativenumber = true
 -- COLORSCHEME
 vim.cmd("colorscheme habamax.nvim")
 
@@ -44,7 +43,7 @@ vim.opt.termguicolors = true
 
 -- LSP config
 require("lspconfig").clangd.setup({
-	cmd = { "clangd", "--background-index", "--compile-commands-dir=." },
+	cmd = { "clangd", "--background-index", "--compile-commands-dir=.", "--header-insertion=never" },
 	root_dir = require("lspconfig.util").root_pattern("compile_commands.json", ".git"),
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
@@ -71,6 +70,25 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end,
 })
 
--- TOGGLE TERM
--- vim.keymap.set("n", "<leader>t", function () require("toggleterm").toggle(1, nil, nil, "float") end, { desc = "Toggle floating terminal" })
--- vim.api.nvim_set_keymap('t', '<C-t>', '<C-\\><C-n>:CFloatTerm<CR>', {noremap = true, silent = true})
+-- vim.keymap.set("n", "<leader>ca", "<cmd>Telescope lsp_code_actions<CR>", { desc = "Lsp code action" })
+
+vim.keymap.set("n", "<leader>ca", function() 
+    vim.lsp.buf.code_action()
+end, { desc = "Lsp code action" })
+
+function open_remote(url)
+    local ext = "." .. vim.fn.fnamemodify(url, ":e")
+    local fname = vim.fn.tempname() .. ext;
+    local cmd = string.format("curl -s -o \"%s\" \"%s\"", fname, url)
+    vim.fn.system(cmd)
+    vim.cmd("Oil " .. fname)
+end
+
+
+-- OPEN REMOTE FILE
+vim.api.nvim_create_user_command(
+    "Ropen",
+    function (opts) open_remote(opts.args) end,
+    { nargs = 1, desc = "Open remote URL" }
+)
+
