@@ -25,19 +25,16 @@ vim.opt.pumwidth = 80
 vim.o.updatetime = 100
 
 -- COLORSCHEME
-vim.cmd("colorscheme habamax.nvim")
+-- vim.cmd.colorscheme "habamax.nvim"
+-- vim.cmd.colorscheme "catppuccin-mocha"
+vim.cmd.colorscheme "kanagawa-wave"
 
 -- TELESCOPE 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#2a2a2a", fg ="#ffffff" } )
-
--- NVIM TREE 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 vim.opt.termguicolors = true
 
@@ -70,8 +67,6 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end,
 })
 
--- vim.keymap.set("n", "<leader>ca", "<cmd>Telescope lsp_code_actions<CR>", { desc = "Lsp code action" })
-
 vim.keymap.set("n", "<leader>ca", function() 
     vim.lsp.buf.code_action()
 end, { desc = "Lsp code action" })
@@ -83,7 +78,6 @@ function open_remote(url)
     vim.fn.system(cmd)
     vim.cmd("Oil " .. fname)
 end
-
 
 -- OPEN REMOTE FILE
 vim.api.nvim_create_user_command(

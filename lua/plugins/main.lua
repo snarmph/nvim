@@ -1,36 +1,11 @@
 return { 
+    -- themes
 	{ "ntk148v/habamax.nvim", dependencies={ "rktjmp/lush.nvim" } },
+    "rebelot/kanagawa.nvim",
+    { "catppuccin/nvim", name = "catppuccin" },
+    -- end themes
     "folke/which-key.nvim",
 	"Pocco81/auto-save.nvim",
-	{
-		"nat-418/boole.nvim",
-		opts = {
-			mappings = {
-				increment = "<C-a>",
-				decrement = "<C-x>",
-			},
-			additions = {
-				{ "[ ]", "[X]" },
-			},
-		},
-	},
-    	{
-    		"cbochs/grapple.nvim",
-    		dependencies = {
-        		{ "nvim-tree/nvim-web-devicons", lazy = true }
-    		},
-		opts = {
-			scope = "git",
-		},
-		event = { "BufReadPost", "BufNewFile", },
-		cmd = "Grapple",
-		keys = {
-			{ "<leader>m", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle tag" },
-			{ "<leader>M", "<cmd>Grapple toggle_tags<cr>", desc = "Grapple open tags window" },
-			{ "<leader>n", "<cmd>Grapple cycle_tags next<cr>", desc = "Grapple cycle next tag" },
-			{ "<leader>p", "<cmd>Grapple cycle_tags prev<cr>", desc = "Grapple cycle previous tag" },
-		},
-	},
 	{
 		'nvim-treesitter/nvim-treesitter',
   		lazy = false,
@@ -63,33 +38,8 @@ return {
     			}
 		}
 	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		version = "*",
-		lazy = false,
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		opts = {
-			sync_root_with_cwd = true,
-			respect_buf_cwd = true,
-			update_focused_file = {
-				enable = true,
-				update_root = true,
-			},
-		},
-		keys = {
-			{ "<leader>op", "<cmd>NvimTreeToggle<cr>", desc = "Toggle Tree" },
-			{ "<leader>of", "<cmd>NvimTreeFocus<cr>", desc = "Focus Tree" },
-		},
-	},
-	"tamago324/lir.nvim",
-	"lewis6991/gitsigns.nvim",
-	-- "ahmedkhalf/project.nvim",
-	-- {
-	--    		'nvim-lualine/lualine.nvim',
-	--    		dependencies = { 'nvim-tree/nvim-web-devicons' }
-	-- },
+	-- "tamago324/lir.nvim",
+	-- "lewis6991/gitsigns.nvim",
 	"mfussenegger/nvim-dap",
 	"RRethy/vim-illuminate",
 	"stevearc/conform.nvim",
@@ -105,10 +55,6 @@ return {
                 modes = { ':', '/', '?' } 
             }
         end
-    },
-    {
-        "zadirion/Unreal.nvim",
-        dependencies = { "tpope/vim-dispatch" }
     },
     {
         "jake-stewart/multicursor.nvim",
@@ -170,5 +116,5 @@ return {
             hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
             hl(0, "MultiCursorDisabledSign", { link = "SignColumn"})
         end
-    }
+    },
 }
