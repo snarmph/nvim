@@ -5,15 +5,20 @@ vim.opt.wrap   = false
 
 vim.api.nvim_create_autocmd(
 	{ "InsertEnter", "FocusLost", "BufLeave" },
-	{ callback = function()
-		vim.opt.relativenumber = false
-	end, }
+    { 
+        callback = function()
+            vim.opt.relativenumber = false
+        end, 
+    }
 )
+
 vim.api.nvim_create_autocmd(
 	{ "InsertLeave", "FocusGained", "BufEnter" },
-	{ callback = function()
-		vim.opt.relativenumber = true 
-	end, }
+	{ 
+        callback = function()
+            vim.opt.relativenumber = true 
+        end, 
+    }
 )
 
 vim.opt.tabstop = 4
@@ -21,8 +26,12 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.pumheight = 10
 vim.opt.pumwidth = 80
+vim.opt.cursorline = true
 
 vim.o.updatetime = 100
+
+vim.keymap.set("n", "<Esc><Esc>", ":noh<CR>", { silent = true })
+vim.keymap.set("v", "ga", ":EasyAlign<CR>")
 
 -- COLORSCHEME
 -- vim.cmd.colorscheme "habamax.nvim"
@@ -30,11 +39,11 @@ vim.o.updatetime = 100
 vim.cmd.colorscheme "kanagawa-wave"
 
 -- TELESCOPE 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#2a2a2a", fg ="#ffffff" } )
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep,  { desc = "Telescope live grep" })
+vim.keymap.set("n", "<leader>fb", builtin.buffers,    { desc = "Telescope buffers" })
+vim.api.nvim_set_hl(0, "TelescopeSelection",          { bg = "#2a2a2a", fg ="#ffffff" } )
 
 vim.opt.termguicolors = true
 
@@ -44,6 +53,8 @@ require("lspconfig").clangd.setup({
 	root_dir = require("lspconfig.util").root_pattern("compile_commands.json", ".git"),
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
+
+vim.lsp.enable('gopls')
 
 vim.diagnostic.config({
 	virtual_text = false,

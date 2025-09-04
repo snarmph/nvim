@@ -5,13 +5,6 @@ return {
     opts = {
         defaults = {
             path_display = { "smart" },
-            -- layout_strategy = "cursor",
-            -- layout_config = {
-            --     width = 0.4,
-            --     height = 0.4,
-            --     preview_cutoff = 1,
-            -- },
-            -- previewer = false,
         },
         pickers = {
             buffers = {
