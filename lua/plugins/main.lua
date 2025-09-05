@@ -2,6 +2,7 @@ return {
     -- themes
 	{ "ntk148v/habamax.nvim", dependencies={ "rktjmp/lush.nvim" } },
     { "catppuccin/nvim", name = "catppuccin", },
+    -- { "tamelion/neovim-molokai" },
     -- end themes
     "folke/which-key.nvim",
 	"Pocco81/auto-save.nvim",

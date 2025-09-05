@@ -27,6 +27,8 @@ vim.opt.expandtab = true
 vim.opt.pumheight = 10
 vim.opt.pumwidth = 80
 vim.opt.cursorline = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.o.updatetime = 100
 
@@ -37,6 +39,9 @@ vim.keymap.set("v", "ga", ":EasyAlign<CR>")
 -- vim.cmd.colorscheme "habamax.nvim"
 -- vim.cmd.colorscheme "catppuccin-mocha"
 vim.cmd.colorscheme "kanagawa-wave"
+vim.cmd.colorscheme "molokai"
+-- vim.g.molokai_original = 1
+
 
 -- TELESCOPE 
 local builtin = require("telescope.builtin")
